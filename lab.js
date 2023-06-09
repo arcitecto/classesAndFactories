@@ -1,8 +1,8 @@
 class Hamster {
-  constructor(owner = " ", name = "Jim", price = 15) {
-    this.owner = owner;
-    this.name = name;
-    this.price = price;
+  constructor() {
+    this.owner = " ";
+    this.name = "Jim";
+    this.price = 15;
   }
   wheelRun() {
     console.log("squeak squeak");
@@ -11,61 +11,81 @@ class Hamster {
     console.log("nibble nibble");
   }
   getPrice() {
-    console.log(this.price);
+    return this.price;
   }
 }
 
 class Person {
-  constructor(
-    name = "Bob",
-    age = 0,
-    height = 0,
-    weight = 0,
-    mood = 0,
-    hamsters = [],
-    bankAccount = 0
-  ) {
-    this.name = name;
-    this.age = age;
-    this.height = height;
-    this.weight = weight;
-    this.mood = mood;
-    this.hamsters = hamsters;
-    this.bankAccount = bankAccount;
+  constructor() {
+    this.name = "bob";
+    this.age = 0;
+    this.height = 0;
+    this.weight = 0;
+    this.mood = 0;
+    this.hamsters = [];
+    this.bankAccount = 20;
   }
   getName() {
-    console.log(this.name);
+    return this.name;
   }
   getAge() {
-    console.log(this.age);
+    return this.age;
   }
   getWeight() {
-    console.log(this.weight);
+    return this.weight;
   }
   greet() {
     console.log("Hello there! ", this.name, ". How are you?");
   }
   eat() {
-    console.log(this.weight + 1);
-    console.log(this.mood + 1);
+    this.weight = this.weight + 1;
+    this.mood = this.mood + 1;
   }
   exercise() {
-    console.log(this.weight - 1);
+    this.weight = this.weigth - 1;
   }
   ageUp() {
-    console.log(this.age + 1);
-    console.log(this.height + 1);
-    console.log(this.weight + 1);
-    console.log(this.mood - 1);
-    console.log(this.bankAccount + 10);
+    this.age = this.age + 1;
+    this.height = this.height + 1;
+    this.weight = this.weight + 1;
+    this.mood = this.mood - 1;
+    this.bankAccount = this.bankAccount + 10;
   }
   buyHamster(hamster) {
-    this.hamsters.push("hamster");
-    console.log(this.hamsters);
-    console.log(this.mood + 10);
-    console.log(this.bankAccount - 15);
+    if (this.bankAccount >= hamster.getPrice()) {
+      this.hamsters.push({ hamster });
+      this.mood = this.mood + 10;
+      this.bankAccount = this.bankAccount - hamster.getPrice();
+      console.log("Hamster was bought.");
+    } else {
+      console.log("You don't have enough money to buy the hamster.");
+    }
   }
 }
 
-let person = new Person("bob", 24, 6, 200, 50, [], 1000);
-person.buyHamster();
+let person = new Person();
+let hamster1 = new Hamster();
+person.buyHamster(hamster1);
+
+let Timmy = new Person();
+Timmy.age = 5;
+console.log(Timmy.getAge());
+
+console.log((Timmy.eat = 5));
+
+console.log((Timmy.exercise = 5));
+
+Timmy.age = Timmy.age + 9;
+console.log(Timmy.getAge());
+
+let Gus = new Hamster();
+Gus.owner = "Timmy";
+
+console.log(Timmy.buyHamster(Gus));
+
+Timmy.age = Timmy.age + 15;
+console.log(Timmy.getAge());
+
+console.log((Timmy.eat = 2));
+
+console.log((Timmy.exercise = 2));
